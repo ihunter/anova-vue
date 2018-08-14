@@ -1,35 +1,54 @@
 <template>
   <v-container fluid>
     <v-slide-y-transition mode="out-in">
-      <v-layout column align-center>
-        <img src="@/assets/logo.png" alt="Vuetify.js" class="mb-5">
-        <blockquote>
-          &#8220;First, solve the problem. Then, write the code.&#8221;
-          <footer>
-            <small>
-              <em>&mdash;John Johnson</em>
-            </small>
-          </footer>
-        </blockquote>
+      <v-layout justify-center>
+        <pre>
+          {{ status }}
+        </pre>
+        <v-btn @click="start" :disabled="status.is_running">Start</v-btn>
       </v-layout>
     </v-slide-y-transition>
   </v-container>
 </template>
 
+<script>
+import StatusService from '@/services/StatusService'
+
+export default {
+  data () {
+    return {
+      status: {}
+    }
+  },
+  methods: {
+    async start () {
+      const config = {
+        target_temp: 100.0,
+        temp_unit: 'f'
+      }
+
+      const start = {
+        is_running: false
+      }
+
+      try {
+        this.status = (await StatusService.post(start)).data
+      } catch (e) {
+        console.error(e)
+      }
+    }
+  },
+  async mounted () {
+    try {
+      this.status = (await StatusService.index()).data
+    } catch (e) {
+      console.error(e)
+    }
+  }
+}
+</script>
+
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
 </style>
