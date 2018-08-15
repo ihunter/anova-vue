@@ -43,12 +43,6 @@
           ticks
         ></v-slider>
       </v-flex>
-
-      <v-flex>
-        <pre>
-          {{ status }}
-        </pre>
-      </v-flex>
     </v-layout>
   </v-container>
 </template>
@@ -73,7 +67,7 @@ export default {
       }
 
       try {
-        const { status } = (await StatusService.post(start)).data
+        const status = (await StatusService.post(start)).data
         console.log(status)
         this.setStatus(status)
       } catch (e) {
@@ -86,7 +80,7 @@ export default {
       }
 
       try {
-        const { status } = (await StatusService.post(stop)).data
+        const status = (await StatusService.post(stop)).data
         this.setStatus(status)
       } catch (e) {
         console.error(e)
@@ -107,7 +101,7 @@ export default {
   async mounted () {
     this.setLoading(true)
     try {
-      const { status } = (await StatusService.index()).data
+      const status = (await StatusService.index()).data
       this.setStatus(status)
     } catch (e) {
       console.error(e)
