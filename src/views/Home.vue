@@ -14,7 +14,9 @@
         <Timer :duration="3600" :timer-length="3000" v-if="isTimerRunning">
           <p>{{ 1 }}</p>
         </Timer>
+      </v-flex>
 
+      <v-flex>
         <Preheating>
           <p>
             Target Temp: {{ targetTemp }}
@@ -52,7 +54,6 @@ import { mapGetters, mapActions } from 'vuex'
 import StatusService from '@/services/StatusService'
 import Timer from '@/components/Timer'
 import Preheating from '@/components/Preheating'
-import axios from 'axios'
 
 export default {
   components: {

@@ -5,7 +5,6 @@ export default {
     return Api().get('/status')
   },
   post (config) {
-    console.log(config)
     return Api().post('/status', config)
   }
 }

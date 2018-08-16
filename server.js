@@ -6,6 +6,8 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const morgan = require('morgan')
 
+const errorHandler = require('./server/util/errorHandler')
+
 const app = express()
 
 app.use(serveStatic(path.join(__dirname, 'dist')))
@@ -15,7 +17,9 @@ app.use(cors())
 
 require('./server/routes')(app)
 
-const port = process.env.PORT || 5000
+app.use(errorHandler)
+
+const port = process.env.PORT || 3000
 app.listen(port)
 
 console.log('server started ', port)
