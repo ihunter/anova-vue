@@ -60,7 +60,7 @@ export default {
   },
   data () {
     return {
-      socket: io('localhost:3000'),
+      socket: io(),
       clientTemp: this.targetTemp
     }
   },
