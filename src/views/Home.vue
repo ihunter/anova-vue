@@ -10,7 +10,7 @@
     </v-layout>
 
     <v-layout justify-center v-else>
-      <v-flex xs6>
+      <v-flex xs12 sm10 md8 lg6 xl2>
         <v-card class="text-xs-center">
           <v-card-text>
             <Timer :duration="3600" :timer-length="3000" v-if="isTimerRunning">
