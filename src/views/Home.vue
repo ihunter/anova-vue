@@ -60,7 +60,7 @@ export default {
   },
   data () {
     return {
-      socket: io(),
+      socket: io(process.env.VUE_APP_SOCKET),
       clientTemp: this.targetTemp
     }
   },
